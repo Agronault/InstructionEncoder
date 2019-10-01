@@ -26,13 +26,13 @@ public class InstructionEncoder {
                 if (parameters[0].equalsIgnoreCase("mvi")) {
                     write.append("run\n");
                     write.append("force -freeze sim:/proc/DIN 16'b" + inst.getImmediate() + " 0\n");
-                    for (int i = 0; i < inst.getClock()-1; i++) {
-                    write.append("run\n");
+                    for (int i = 0; i < inst.getClock() - 1; i++) {
+                        write.append("run\n");
                     }
-                }else{
-                for (int i = 0; i < inst.getClock(); i++) {
-                    write.append("run\n");
-                }
+                } else {
+                    for (int i = 0; i < inst.getClock(); i++) {
+                        write.append("run\n");
+                    }
                 }
             }
             write.close();

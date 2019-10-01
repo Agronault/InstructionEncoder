@@ -1,4 +1,5 @@
-mvi R0 #10
+mvi R0 #10 
 mvi R1 #5
 mv R7 R0
-add R7 R1
+add R0 R1
+slt R0 R1

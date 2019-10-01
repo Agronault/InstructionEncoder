@@ -17,7 +17,7 @@ public abstract class Maps {
      * Inicializa o hashmap cicles
      */
     public static void init(){
-        cicles.put("mv", 3);
+        cicles.put("mv", 2);
         cicles.put("mvi", 3);
         cicles.put("add", 4);
         cicles.put("sub", 4);
