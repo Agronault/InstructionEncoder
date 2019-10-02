@@ -23,6 +23,8 @@ public abstract class Maps {
         cicles.put("sub", 4);
         cicles.put("and", 4);
         cicles.put("slt", 4);
+        cicles.put("sll", 4);
+        cicles.put("srl", 4);
         //TODO: add new instructions
     }
 }
