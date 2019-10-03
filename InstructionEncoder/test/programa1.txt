@@ -2,4 +2,4 @@ mvi R0 #10
 mvi R1 #5
 mv R7 R0
 add R0 R1
-slt R0 R1
+slt R1 R0

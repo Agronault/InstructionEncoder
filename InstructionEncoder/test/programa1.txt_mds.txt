@@ -41,7 +41,7 @@ run
 force -freeze sim:/proc/DIN 16'b0000000001110000 0
 run
 run
-force -freeze sim:/proc/DIN 16'b0000000000010010 0
+force -freeze sim:/proc/DIN 16'b0000000010000010 0
 run
 run
 run

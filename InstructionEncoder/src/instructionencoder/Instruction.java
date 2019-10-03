@@ -71,19 +71,19 @@ public class Instruction {
         }
         
         if(this.op2.equalsIgnoreCase("R1")){
-        op1 = "001";
+        op2 = "001";
         }else if(this.op2.equalsIgnoreCase("R2")){
-        op1 = "010";
+        op2 = "010";
         }else if(this.op2.equalsIgnoreCase("R3")){
-        op1 = "011";
+        op2 = "011";
         }else if(this.op2.equalsIgnoreCase("R4")){
-        op1 = "100";
+        op2 = "100";
         }else if(this.op2.equalsIgnoreCase("R5")){
-        op1 = "101";
+        op2 = "101";
         }else if(this.op2.equalsIgnoreCase("R6")){
-        op1 = "110";
+        op2 = "110";
         }else if(this.op2.equalsIgnoreCase("R7")){
-        op1 = "111";
+        op2 = "111";
         }
         
         return "000000"+op2+op1+call; 
