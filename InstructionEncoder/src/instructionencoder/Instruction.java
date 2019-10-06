@@ -54,37 +54,15 @@ public class Instruction {
             call="1010";
         }
         
-        if(this.op1.equalsIgnoreCase("R1")){
-        op1 = "001";
-        }else if(this.op1.equalsIgnoreCase("R2")){
-        op1 = "010";
-        }else if(this.op1.equalsIgnoreCase("R3")){
-        op1 = "011";
-        }else if(this.op1.equalsIgnoreCase("R4")){
-        op1 = "100";
-        }else if(this.op1.equalsIgnoreCase("R5")){
-        op1 = "101";
-        }else if(this.op1.equalsIgnoreCase("R6")){
-        op1 = "110";
-        }else if(this.op1.equalsIgnoreCase("R7")){
-        op1 = "111";
-        }
         
-        if(this.op2.equalsIgnoreCase("R1")){
-        op2 = "001";
-        }else if(this.op2.equalsIgnoreCase("R2")){
-        op2 = "010";
-        }else if(this.op2.equalsIgnoreCase("R3")){
-        op2 = "011";
-        }else if(this.op2.equalsIgnoreCase("R4")){
-        op2 = "100";
-        }else if(this.op2.equalsIgnoreCase("R5")){
-        op2 = "101";
-        }else if(this.op2.equalsIgnoreCase("R6")){
-        op2 = "110";
-        }else if(this.op2.equalsIgnoreCase("R7")){
-        op2 = "111";
-        }
+        op1 = Integer.toBinaryString(Integer.valueOf(this.op1.substring(1)));
+        op1 = String.format("%3s", op1.replace(' ', '0'));
+        op1 = op1.replace(' ', '0');
+        
+        op2 = Integer.toBinaryString(Integer.valueOf(this.op2.substring(1)));
+        op2 = String.format("%3s", op2.replace(' ', '0'));
+        op2 = op2.replace(' ', '0');
+        
         
         return "000000"+op2+op1+call; 
     }
