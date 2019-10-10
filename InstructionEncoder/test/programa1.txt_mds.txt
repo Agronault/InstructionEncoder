@@ -28,12 +28,12 @@ run
 run
 run
 run
-force -freeze sim:/proc/DIN 16'b0000000000000001 0
+force -freeze sim:/proc/DIN 16'b00000010100000001 0
 run
 force -freeze sim:/proc/DIN 16'b0000000000001010 0
 run
 run
-force -freeze sim:/proc/DIN 16'b0000000000010001 0
+force -freeze sim:/proc/DIN 16'b0000001010010001 0
 run
 force -freeze sim:/proc/DIN 16'b0000000000000101 0
 run

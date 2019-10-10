@@ -18,20 +18,25 @@ public class InstructionEncoder {
         try {
             BufferedReader read = new BufferedReader(new FileReader(args[0]));
             BufferedWriter write = new BufferedWriter(new FileWriter(args[0] + "_mds.txt"));
-            write.append(InstructionEncoder.initials);
+            initialize(write);
             for (String linha = read.readLine(); linha != null; linha = read.readLine()) {
                 String[] parameters = linha.split(" ");
                 Instruction inst = new Instruction(parameters[0], parameters[1], parameters[2], Maps.cicles.get(parameters[0].toLowerCase()));
-                write.append("force -freeze sim:/proc/DIN 16'b" + inst.opcode() + " 0\n");
+                write.append("force -freeze sim:/proc/DIN 16'b" + inst.opcode() + " 0");
+                write.newLine();
                 if (parameters[0].equalsIgnoreCase("mvi")) {
-                    write.append("run\n");
-                    write.append("force -freeze sim:/proc/DIN 16'b" + inst.getImmediate() + " 0\n");
+                    write.append("run");
+                    write.newLine();
+                    write.append("force -freeze sim:/proc/DIN 16'b" + inst.getImmediate() + " 0");
+                    write.newLine();
                     for (int i = 0; i < inst.getClock() - 1; i++) {
-                        write.append("run\n");
+                        write.append("run");
+                        write.newLine();
                     }
                 } else {
                     for (int i = 0; i < inst.getClock(); i++) {
-                        write.append("run\n");
+                        write.append("run");
+                        write.newLine();
                     }
                 }
             }
@@ -42,35 +47,42 @@ public class InstructionEncoder {
 
     }
 
-    protected static String initials = new String(
-            "add wave -position end  sim:/proc/Clock\n"
-            + "add wave -position end  sim:/proc/DIN\n"
-            + "add wave -position end  sim:/proc/Resetn\n"
-            + "add wave -position end  sim:/proc/Run\n"
-            + "add wave -position end  sim:/proc/ControlULA\n"
-            + "add wave -position end  sim:/proc/I\n"
-            + "add wave -position end  sim:/proc/Xreg\n"
-            + "add wave -position end  sim:/proc/Yreg\n"
-            + "add wave -position end  sim:/proc/Tstep_Q\n"
-            + "add wave -position end  sim:/proc/R0\n"
-            + "add wave -position end  sim:/proc/R1\n"
-            + "add wave -position end  sim:/proc/R2\n"
-            + "add wave -position end  sim:/proc/R3\n"
-            + "add wave -position end  sim:/proc/R4\n"
-            + "add wave -position end  sim:/proc/R5\n"
-            + "add wave -position end  sim:/proc/R6\n"
-            + "add wave -position end  sim:/proc/R7\n"
-            + "add wave -position end  sim:/proc/A\n"
-            + "add wave -position end  sim:/proc/G\n"
-            + "add wave -position end  sim:/proc/Gout\n"
-            + "force -freeze sim:/proc/Clock 1 0, 0 {50 ns} -r 100\n"
-            + "force -freeze sim:/proc/Resetn 1'h0 0\n"
-            + "force -freeze sim:/proc/Run 1'h0 0\n"
-            + "run\n"
-            + "force -freeze sim:/proc/Resetn 1'h1 0\n"
-            + "force -freeze sim:/proc/Run 1'h1 0\n"
-            + "run\n"
-            + "run\n"
-            + "run\n"
-            + "run\n");
+    protected static void initialize(BufferedWriter write) throws IOException {
+        for (String name : initials) {
+            write.append(name);
+            write.newLine();
+        }
+    }
+
+    protected static String[] initials = new String[]{
+        "add wave -position end  sim:/proc/Clock",
+        "add wave -position end  sim:/proc/DIN",
+        "add wave -position end  sim:/proc/Resetn",
+        "add wave -position end  sim:/proc/Run",
+        "add wave -position end  sim:/proc/ControlULA",
+        "add wave -position end  sim:/proc/I",
+        "add wave -position end  sim:/proc/Xreg",
+        "add wave -position end  sim:/proc/Yreg",
+        "add wave -position end  sim:/proc/Tstep_Q",
+        "add wave -position end  sim:/proc/R0",
+        "add wave -position end  sim:/proc/R1",
+        "add wave -position end  sim:/proc/R2",
+        "add wave -position end  sim:/proc/R3",
+        "add wave -position end  sim:/proc/R4",
+        "add wave -position end  sim:/proc/R5",
+        "add wave -position end  sim:/proc/R6",
+        "add wave -position end  sim:/proc/R7",
+        "add wave -position end  sim:/proc/A",
+        "add wave -position end  sim:/proc/G",
+        "add wave -position end  sim:/proc/Gout",
+        "force -freeze sim:/proc/Clock 1 0, 0 {50 ns} -r 100",
+        "force -freeze sim:/proc/Resetn 1'h0 0",
+        "force -freeze sim:/proc/Run 1'h0 0",
+        "run",
+        "force -freeze sim:/proc/Resetn 1'h1 0",
+        "force -freeze sim:/proc/Run 1'h1 0",
+        "run",
+        "run",
+        "run",
+        "run"};
 }
