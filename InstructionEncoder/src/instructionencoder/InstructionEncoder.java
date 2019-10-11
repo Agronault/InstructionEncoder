@@ -17,18 +17,23 @@ public class InstructionEncoder {
         Maps.init();
         try {
             BufferedReader read = new BufferedReader(new FileReader(args[0]));
-            BufferedWriter write = new BufferedWriter(new FileWriter(args[0] + "_mds.txt"));
+            BufferedWriter write = new BufferedWriter(new FileWriter(args[0].substring(0, args[0].length()-4) + "_mds.txt"));
+            BufferedWriter writeBin = new BufferedWriter(new FileWriter(args[0].substring(0, args[0].length()-4) + "_bin.txt"));
             initialize(write);
             for (String linha = read.readLine(); linha != null; linha = read.readLine()) {
                 String[] parameters = linha.split(" ");
                 Instruction inst = new Instruction(parameters[0], parameters[1], parameters[2], Maps.cicles.get(parameters[0].toLowerCase()));
                 write.append("force -freeze sim:/proc/DIN 16'b" + inst.opcode() + " 0");
+                writeBin.append(inst.opcode());
                 write.newLine();
+                writeBin.newLine();
                 if (parameters[0].equalsIgnoreCase("mvi")) {
                     write.append("run");
                     write.newLine();
                     write.append("force -freeze sim:/proc/DIN 16'b" + inst.getImmediate() + " 0");
+                    writeBin.append(inst.getImmediate());
                     write.newLine();
+                    writeBin.newLine();
                     for (int i = 0; i < inst.getClock() - 1; i++) {
                         write.append("run");
                         write.newLine();
@@ -41,6 +46,7 @@ public class InstructionEncoder {
                 }
             }
             write.close();
+            writeBin.close();
         } catch (FileNotFoundException e) {
             System.err.println("Arquivo fornecido não encontrado");
         }
