@@ -1,5 +1,5 @@
 # InstructionEncoder
-Encoder for [Verilog Processor](github.com/Agronault/VerilogProcessor)  
+Encoder for [Verilog Processor](https://github.com/Agronault/VerilogProcessor)  
 
 ## Usage
 ![usage](https://i.imgur.com/HFRrOa4.png)  
